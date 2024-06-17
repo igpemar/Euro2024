@@ -167,9 +167,9 @@ def check_duplicate_values(bracketMap):
     return False
 
 
-def get_bracket_map(q_tag: str) -> dict:
+def get(q_tag: str) -> dict:
     if q_tag == "":
-        return bracketMap_16
+        return bracketMap_8
     for key, bracket in bracketMap_24.items():
         for c in q_tag:
             if c not in key:
@@ -178,6 +178,15 @@ def get_bracket_map(q_tag: str) -> dict:
             return bracket
     else:
         raise Exception(f"Bracket not found for {q_tag}")
+
+
+def get_matches(selected_bracket: dict, qualified: dict):
+    bracket_list = []
+    for Home, Away in selected_bracket.items():
+        h_a_sorted = [qualified[Home].name, qualified[Away].name]
+        h_a_sorted.sort()
+        bracket_list.append(f"{h_a_sorted[0]}-{h_a_sorted[1]}")
+    return bracket_list
 
 
 if check_duplicate_values(bracketMap_24):

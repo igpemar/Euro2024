@@ -6,10 +6,10 @@ def initialize():
     groups = []
     groups.append(Group("A", calendars.calendarA))
     groups.append(Group("B", calendars.calendarB))
-    groups.append(Group("C", calendars.calendarC))
-    groups.append(Group("D", calendars.calendarD))
-    groups.append(Group("E", calendars.calendarE))
-    groups.append(Group("F", calendars.calendarF))
+    # groups.append(Group("C", calendars.calendarC))
+    # groups.append(Group("D", calendars.calendarD))
+    # groups.append(Group("E", calendars.calendarE))
+    # groups.append(Group("F", calendars.calendarF))
     return groups
 
 
