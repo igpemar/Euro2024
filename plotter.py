@@ -3,62 +3,79 @@ import pickle
 import simulation
 import numpy as np
 
-source_file = "counter_all_1000_G0.pckl"
+N = 10000
 
-# List of country names
-with open(source_file, "rb") as f:
-    counter_all = pickle.load(f)
-countries = set()
+for n in range(12, 13):
+    source_file = f"FR/counter_all_{N}_G{n}.pckl"
 
-countries = sorted(list(simulation.fifa_ranking.keys()))
-country_indices = {}
-for i, country in enumerate(countries):
-    country_indices[country] = i
+    # List of country names
+    with open(source_file, "rb") as f:
+        counter_all = pickle.load(f)
+    countries = set()
 
+    countries = sorted(list(simulation.fifa_ranking.keys()))
+    country_indices = {}
+    for i, country in enumerate(countries):
+        country_indices[country] = i
 
-data = np.zeros([len(countries), len(countries)])
-for game, count in counter_all.count.items():
-    i = country_indices[game.split("-")[0]]
-    j = country_indices[game.split("-")[1]]
-    data[i][j] = count
-    data[j][i] = count
+    data = np.zeros([len(countries), len(countries) + 1])
+    for game, count in counter_all.count.items():
+        i = country_indices[game.split("-")[0]]
+        j = country_indices[game.split("-")[1]]
+        data[i][j] = count
+        data[j][i] = count
 
-for i in range(data.shape[0]):
-    row_sum = np.sum(data[i, :])  # Sum of the elements in the row
-    if row_sum != 0:  # To avoid division by zero
-        data[i, :] = 100 * data[i, :] / row_sum
+    all_games = np.sum(data)
+    print(all_games)
+    for i in range(data.shape[0]):
+        row_sum = np.sum(data[i, :])  # Sum of the elements in the row
+        data[i, :] = 100 * data[i, :] / (all_games / 16)
+        data[i, -1] = str(100 * row_sum / (all_games / 16))
 
-# Create the plot
-fig, ax = plt.subplots(figsize=(8, 8))
-cax = ax.matshow(data, cmap="coolwarm")
+    # Create the plot
+    vmin = 0
+    vmax = np.max(
+        data[:, :-1]
+    )  # You can set this to the maximum value you want for the colormap
+    print(vmax)
+    fig, ax = plt.subplots(figsize=(16, 10))
+    cax = ax.matshow(data, cmap="coolwarm", vmin=vmin, vmax=vmax)
 
-# Add color bar
-fig.colorbar(cax)
+    # Add color bar
+    cbar = fig.colorbar(cax)
+    cbar.set_label("Probability (%)")
+    # fig.colorbar(cax)
 
-# Loop over data dimensions and create text annotations.
-for i in range(len(data)):
-    for j in range(len(data[i])):
-        ax.text(
-            j,
-            i,
-            f"{round(data[i][j],1)}",
-            ha="center",
-            va="center",
-            color="black",
-            fontsize=8,
-        )
+    # Loop over data dimensions and create text annotations.
+    for i in range(len(data)):
+        for j in range(len(data[i])):
+            ax.text(
+                j,
+                i,
+                f"{round(data[i][j],1)}",
+                ha="center",
+                va="center",
+                color="black",
+                fontsize=8,
+            )
 
-# Set axis labels with country names
-ax.set_xticks(range(len(countries)))
-ax.set_yticks(range(len(countries)))
-ax.set_xticklabels(countries)
-ax.set_yticklabels(countries)
+    # Set axis labels with country names
+    ax.set_xticks(range(len(countries)))
+    ax.set_yticks(range(len(countries)))
+    ax.set_xticklabels(countries)
+    ax.set_yticklabels(countries)
 
-# Rotate the x-axis labels for better readability
-plt.xticks(rotation=90)
+    # Rotate the x-axis labels for better readability
+    plt.xticks(rotation=90)
 
-# Set title
-plt.title([source_file, "Round of 16 Match Probabilities"])
+    # Set title
+    plt.title(
+        [
+            source_file,
+            f"Round of 16 Match Probabilities after Game Day 1; N={N}",
+        ]
+    )
 
-# Display the plot
-plt.show()
+    # Display the plot
+    plt.savefig(f"FR_N_{N}_G{n}.png", dpi=500)
+    # plt.show()

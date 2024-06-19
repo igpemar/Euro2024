@@ -4,9 +4,9 @@ import pickle
 import time
 import os
 
-N = 50000
+N = 1000000
 display_max = 10
-PROCESSES = 1
+PROCESSES = 20
 
 if __name__ == "__main__":
     counters = {}

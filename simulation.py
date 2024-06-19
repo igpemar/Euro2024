@@ -37,11 +37,6 @@ select_match = "1B"
 
 
 def random_sim(match):
-    if match[0] == "Albania":
-        return 5, 0
-    if match[1] == "Albania":
-        return 0, 5
-
     draw = random.random()
     if draw < 0.30:
         goals = random.randint(0, MAX_RANDOM)
@@ -111,12 +106,6 @@ def worker(N, index):
             for key in qualified_3rd_group.keys():
                 bracket_string += key[1]
 
-        if (
-            qualified_all["1B"].name
-            == "Albania"
-            # and qualified_all["3D"].name == "Austria"
-        ):
-            pass
         # Generate bracket
         selected_bracket = bracket.get(bracket_string)
         bracket_matches = bracket.get_matches(selected_bracket, qualified_all)

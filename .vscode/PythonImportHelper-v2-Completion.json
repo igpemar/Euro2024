@@ -1,0 +1,461 @@
+[
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "calendars,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "calendars.",
+        "description": "calendars.",
+        "detail": "calendars.",
+        "documentation": {}
+    },
+    {
+        "label": "multiprocessing",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "simulation",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "simulation",
+        "description": "simulation",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "bracket,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "bracket.",
+        "description": "bracket.",
+        "detail": "bracket.",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "check_duplicate_values",
+        "kind": 2,
+        "importPath": "bracket",
+        "description": "bracket",
+        "peekOfCode": "def check_duplicate_values(bracketMap):\n    for _, inner_dict in bracketMap.items():\n        for value in inner_dict.values():\n            values = set()\n            if value in values:\n                return True\n            values.add(value)\n    return False\ndef get(q_tag: str) -> dict:\n    if q_tag == \"\":",
+        "detail": "bracket",
+        "documentation": {}
+    },
+    {
+        "label": "get",
+        "kind": 2,
+        "importPath": "bracket",
+        "description": "bracket",
+        "peekOfCode": "def get(q_tag: str) -> dict:\n    if q_tag == \"\":\n        return bracketMap_16\n    for key, bracket in bracketMap_24.items():\n        for c in q_tag:\n            if c not in key:\n                break\n        else:\n            return bracket\n    else:",
+        "detail": "bracket",
+        "documentation": {}
+    },
+    {
+        "label": "get_matches",
+        "kind": 2,
+        "importPath": "bracket",
+        "description": "bracket",
+        "peekOfCode": "def get_matches(selected_bracket: dict, qualified: dict):\n    bracket_list = []\n    for Home, Away in selected_bracket.items():\n        h_a_sorted = [qualified[Home].name, qualified[Away].name]\n        h_a_sorted.sort()\n        bracket_list.append(f\"{h_a_sorted[0]}-{h_a_sorted[1]}\")\n    return bracket_list\nif check_duplicate_values(bracketMap_24):\n    raise Exception(\"Duplicate values found in bracketMap\")\nelse:",
+        "detail": "bracket",
+        "documentation": {}
+    },
+    {
+        "label": "bracketMap_24",
+        "kind": 5,
+        "importPath": "bracket",
+        "description": "bracket",
+        "peekOfCode": "bracketMap_24 = {\n    \"ABCD\": {\n        \"1B\": \"3A\",  ## this is our match\n        \"1C\": \"3D\",\n        \"1E\": \"3B\",\n        \"1F\": \"3C\",\n        \"1A\": \"2C\",\n        \"1D\": \"2F\",\n        \"2A\": \"2B\",\n        \"2D\": \"2E\",",
+        "detail": "bracket",
+        "documentation": {}
+    },
+    {
+        "label": "bracketMap_8",
+        "kind": 5,
+        "importPath": "bracket",
+        "description": "bracket",
+        "peekOfCode": "bracketMap_8 = {\"1B\": \"2A\", \"1A\": \"2B\"}\nbracketMap_16 = {\"1B\": \"2A\", \"1A\": \"2B\", \"1C\": \"2D\", \"1D\": \"2C\"}\ndef check_duplicate_values(bracketMap):\n    for _, inner_dict in bracketMap.items():\n        for value in inner_dict.values():\n            values = set()\n            if value in values:\n                return True\n            values.add(value)\n    return False",
+        "detail": "bracket",
+        "documentation": {}
+    },
+    {
+        "label": "bracketMap_16",
+        "kind": 5,
+        "importPath": "bracket",
+        "description": "bracket",
+        "peekOfCode": "bracketMap_16 = {\"1B\": \"2A\", \"1A\": \"2B\", \"1C\": \"2D\", \"1D\": \"2C\"}\ndef check_duplicate_values(bracketMap):\n    for _, inner_dict in bracketMap.items():\n        for value in inner_dict.values():\n            values = set()\n            if value in values:\n                return True\n            values.add(value)\n    return False\ndef get(q_tag: str) -> dict:",
+        "detail": "bracket",
+        "documentation": {}
+    },
+    {
+        "label": "count_all_occurrences",
+        "kind": 2,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "def count_all_occurrences(calendarA):\n    # Flatten the list of lists\n    from collections import Counter\n    flattened_list = [\n        item for sublist in calendarA for item in sublist if isinstance(item, str)\n    ]\n    # Use Counter to count occurrences of each string\n    return Counter(flattened_list)\nif len(calendarA) != 6:\n    raise Exception(\"calendarA is missing matches\")",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "calendarA",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "calendarA = [\n    [\"Germany\", \"Scotland\", 5, 1, True],\n    [\"Hungary\", \"Switzerland\", 1, 3, True],\n    [\"Germany\", \"Hungary\", -1, -1, True],\n    [\"Scotland\", \"Switzerland\", -1, -1, True],\n    [\"Switzerland\", \"Germany\", -1, -1, True],\n    [\"Scotland\", \"Hungary\", -1, -1, True],\n]\ncalendarB = [\n    [\"Spain\", \"Croatia\", 3, 0, True],",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "calendarB",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "calendarB = [\n    [\"Spain\", \"Croatia\", 3, 0, True],\n    [\"Italy\", \"Albania\", 2, 1, True],\n    [\"Croatia\", \"Albania\", -1, -1, True],\n    [\"Spain\", \"Italy\", -1, -1, True],\n    [\"Albania\", \"Spain\", -1, -1, True],\n    [\"Croatia\", \"Italy\", -1, -1, True],\n]\ncalendarC = [\n    [\"Slovenia\", \"Denmark\", 1, 1, True],",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "calendarC",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "calendarC = [\n    [\"Slovenia\", \"Denmark\", 1, 1, True],\n    [\"Serbia\", \"England\", 0, 1, True],\n    [\"Slovenia\", \"Serbia\", -1, -1, True],\n    [\"Denmark\", \"England\", -1, -1, True],\n    [\"Denmark\", \"Serbia\", -1, -1, True],\n    [\"England\", \"Slovenia\", -1, -1, True],\n]\ncalendarD = [\n    [\"Poland\", \"Netherlands\", 1, 2, True],",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "calendarD",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "calendarD = [\n    [\"Poland\", \"Netherlands\", 1, 2, True],\n    [\"Austria\", \"France\", 0, 1, True],\n    [\"Poland\", \"Austria\", -1, -1, True],\n    [\"Netherlands\", \"France\", -1, -1, True],\n    [\"Netherlands\", \"Austria\", -1, -1, True],\n    [\"France\", \"Poland\", -1, -1, True],\n]\ncalendarE = [\n    [\"Romania\", \"Ukraine\", 3, 0, True],",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "calendarE",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "calendarE = [\n    [\"Romania\", \"Ukraine\", 3, 0, True],\n    [\"Belgium\", \"Slovakia\", 0, 1, True],\n    [\"Slovakia\", \"Ukraine\", -1, -1, True],\n    [\"Belgium\", \"Romania\", -1, -1, True],\n    [\"Ukraine\", \"Belgium\", -1, -1, True],\n    [\"Slovakia\", \"Romania\", -1, -1, True],\n]\ncalendarF = [\n    [\"Turkey\", \"Georgia\", 3, 1, True],",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "calendarF",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "calendarF = [\n    [\"Turkey\", \"Georgia\", 3, 1, True],\n    [\"Portugal\", \"Czechia\", 2, 1, True],\n    [\"Georgia\", \"Czechia\", -1, -1, True],\n    [\"Turkey\", \"Portugal\", -1, -1, True],\n    [\"Czechia\", \"Turkey\", -1, -1, True],\n    [\"Georgia\", \"Portugal\", -1, -1, True],\n]\ndef count_all_occurrences(calendarA):\n    # Flatten the list of lists",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "occurrences",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "occurrences = count_all_occurrences(calendarA)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarB)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarC)\nfor k, v in occurrences.items():",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "occurrences",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "occurrences = count_all_occurrences(calendarB)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarC)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarD)\nfor k, v in occurrences.items():",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "occurrences",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "occurrences = count_all_occurrences(calendarC)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarD)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarE)\nfor k, v in occurrences.items():",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "occurrences",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "occurrences = count_all_occurrences(calendarD)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarE)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarF)\nfor k, v in occurrences.items():",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "occurrences",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "occurrences = count_all_occurrences(calendarE)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\noccurrences = count_all_occurrences(calendarF)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\nprint(\"All teams within each calendars play exactly 3 matches\")\nG = 0",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "occurrences",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "occurrences = count_all_occurrences(calendarF)\nfor k, v in occurrences.items():\n    if v != 3:\n        raise Exception(f\"Team {k} is missing matches\")\nprint(\"All teams within each calendars play exactly 3 matches\")\nG = 0\nfor match in calendarA:\n    if match[2] != -1 and match[4]:\n        G += 1\nfor match in calendarB:",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "G",
+        "kind": 5,
+        "importPath": "calendars",
+        "description": "calendars",
+        "peekOfCode": "G = 0\nfor match in calendarA:\n    if match[2] != -1 and match[4]:\n        G += 1\nfor match in calendarB:\n    if match[2] != -1 and match[4]:\n        G += 1\nfor match in calendarC:\n    if match[2] != -1 and match[4]:\n        G += 1",
+        "detail": "calendars",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "kind": 6,
+        "importPath": "counter",
+        "description": "counter",
+        "peekOfCode": "class Counter:\n    def __init__(self, name: str):\n        self.name = name\n        self.count = {}\n        self.total = 0\n        self.country_count = {}\n    def add(self, match):\n        self.count[match] = self.count.get(match, 0) + 1\n        self.total += 1\n    def add_country_count(self, match):",
+        "detail": "counter",
+        "documentation": {}
+    },
+    {
+        "label": "Group",
+        "kind": 6,
+        "importPath": "group",
+        "description": "group",
+        "peekOfCode": "class Group:\n    def __init__(self, name: str, calendar: list[list[team.Team]]):\n        self.name = name\n        self.teams = self.set_teams(calendar)\n        self.calendar = self.set_calendar(calendar)\n        self.results = self.get_results_from_played_matches(calendar)\n        self.standings = pd.DataFrame()\n    def set_calendar(self, calendar):\n        return [[match[0], match[1]] for match in calendar]\n    def set_teams(self, calendar: list[list[team.Team]]) -> dict:",
+        "detail": "group",
+        "documentation": {}
+    },
+    {
+        "label": "initialize",
+        "kind": 2,
+        "importPath": "group",
+        "description": "group",
+        "peekOfCode": "def initialize():\n    groups = []\n    groups.append(Group(\"A\", calendars.calendarA))\n    groups.append(Group(\"B\", calendars.calendarB))\n    groups.append(Group(\"C\", calendars.calendarC))\n    groups.append(Group(\"D\", calendars.calendarD))\n    groups.append(Group(\"E\", calendars.calendarE))\n    groups.append(Group(\"F\", calendars.calendarF))\n    return groups\nclass Group:",
+        "detail": "group",
+        "documentation": {}
+    },
+    {
+        "label": "N",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "N = 1000000\ndisplay_max = 10\nPROCESSES = 20\nif __name__ == \"__main__\":\n    counters = {}\n    # Create threads\n    process = []\n    if PROCESSES < 1:\n        raise Exception(\"N must be >0\")\n    if N % PROCESSES != 0:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "display_max",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "display_max = 10\nPROCESSES = 20\nif __name__ == \"__main__\":\n    counters = {}\n    # Create threads\n    process = []\n    if PROCESSES < 1:\n        raise Exception(\"N must be >0\")\n    if N % PROCESSES != 0:\n        raise Exception(\"N must be strictly divisible by PROCESSES\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "PROCESSES",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "PROCESSES = 20\nif __name__ == \"__main__\":\n    counters = {}\n    # Create threads\n    process = []\n    if PROCESSES < 1:\n        raise Exception(\"N must be >0\")\n    if N % PROCESSES != 0:\n        raise Exception(\"N must be strictly divisible by PROCESSES\")\n    t_start = time.time()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "N",
+        "kind": 5,
+        "importPath": "plotter",
+        "description": "plotter",
+        "peekOfCode": "N = 10000\nfor n in range(12, 13):\n    source_file = f\"FR/counter_all_{N}_G{n}.pckl\"\n    # List of country names\n    with open(source_file, \"rb\") as f:\n        counter_all = pickle.load(f)\n    countries = set()\n    countries = sorted(list(simulation.fifa_ranking.keys()))\n    country_indices = {}\n    for i, country in enumerate(countries):",
+        "detail": "plotter",
+        "documentation": {}
+    },
+    {
+        "label": "Result",
+        "kind": 6,
+        "importPath": "result",
+        "description": "result",
+        "peekOfCode": "class Result:\n    def __init__(self, result: list):\n        self.team_home = result[0]\n        self.team_away = result[1]\n        self.goals_home = result[2]\n        self.goals_away = result[3]",
+        "detail": "result",
+        "documentation": {}
+    },
+    {
+        "label": "random_sim",
+        "kind": 2,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "def random_sim(match):\n    draw = random.random()\n    if draw < 0.30:\n        goals = random.randint(0, MAX_RANDOM)\n        return goals, goals\n    goals_h = random.randint(0, MAX_RANDOM)\n    goals_a = random.randint(0, MAX_RANDOM)\n    while goals_h == goals_a:\n        goals_h = random.randint(0, MAX_RANDOM)\n        goals_a = random.randint(0, MAX_RANDOM)",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "ranking_biased",
+        "kind": 2,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "def ranking_biased(match):\n    import math\n    home_team, away_team = match[0], match[1]\n    gain = (\n        RANKING_BIASED_MAX_GAIN\n        * (fifa_ranking[home_team] - fifa_ranking[away_team])\n        / 24\n    )\n    return math.floor(random.randint(0, MAX_RANDOM) - gain), math.floor(\n        random.randint(0, MAX_RANDOM) + gain",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "worker",
+        "kind": 2,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "def worker(N, index):\n    qualified_directly, qualified_potentially, qualified_all = {}, {}, {}\n    counter_all = counter.Counter(\"all_games\")\n    counter_country = counter.Counter(selected_country)\n    counter_match = counter.Counter(select_match)\n    for i in range(int(N)):\n        bracket_string = \"\"\n        print(\n            f\"P {index:02d}: Begin of simulation {i + 1}/{N}, {round((i+1)/N*100,3)}%\"\n        )",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "combine_results",
+        "kind": 2,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "def combine_results(*counters):\n    combined = counters[0]\n    for counter in counters[1:]:\n        combined.append(counter)\n    return combined",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "fifa_ranking",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "fifa_ranking = {\n    \"France\": 1,\n    \"Belgium\": 2,\n    \"England\": 3,\n    \"Portugal\": 4,\n    \"Netherlands\": 5,\n    \"Spain\": 6,\n    \"Italy\": 7,\n    \"Croatia\": 8,\n    \"Germany\": 9,",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOW_THIRDS",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "ALLOW_THIRDS = True\nMAX_RANDOM = 4\nRANKING_BIASED_MAX_GAIN = 2\nselected_country = \"Spain\"\nselect_match = \"1B\"\ndef random_sim(match):\n    draw = random.random()\n    if draw < 0.30:\n        goals = random.randint(0, MAX_RANDOM)\n        return goals, goals",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "MAX_RANDOM",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "MAX_RANDOM = 4\nRANKING_BIASED_MAX_GAIN = 2\nselected_country = \"Spain\"\nselect_match = \"1B\"\ndef random_sim(match):\n    draw = random.random()\n    if draw < 0.30:\n        goals = random.randint(0, MAX_RANDOM)\n        return goals, goals\n    goals_h = random.randint(0, MAX_RANDOM)",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "RANKING_BIASED_MAX_GAIN",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "RANKING_BIASED_MAX_GAIN = 2\nselected_country = \"Spain\"\nselect_match = \"1B\"\ndef random_sim(match):\n    draw = random.random()\n    if draw < 0.30:\n        goals = random.randint(0, MAX_RANDOM)\n        return goals, goals\n    goals_h = random.randint(0, MAX_RANDOM)\n    goals_a = random.randint(0, MAX_RANDOM)",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "selected_country",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "selected_country = \"Spain\"\nselect_match = \"1B\"\ndef random_sim(match):\n    draw = random.random()\n    if draw < 0.30:\n        goals = random.randint(0, MAX_RANDOM)\n        return goals, goals\n    goals_h = random.randint(0, MAX_RANDOM)\n    goals_a = random.randint(0, MAX_RANDOM)\n    while goals_h == goals_a:",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "select_match",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "select_match = \"1B\"\ndef random_sim(match):\n    draw = random.random()\n    if draw < 0.30:\n        goals = random.randint(0, MAX_RANDOM)\n        return goals, goals\n    goals_h = random.randint(0, MAX_RANDOM)\n    goals_a = random.randint(0, MAX_RANDOM)\n    while goals_h == goals_a:\n        goals_h = random.randint(0, MAX_RANDOM)",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "simulation_function",
+        "kind": 5,
+        "importPath": "simulation",
+        "description": "simulation",
+        "peekOfCode": "simulation_function = simulation.random_sim\ndef worker(N, index):\n    qualified_directly, qualified_potentially, qualified_all = {}, {}, {}\n    counter_all = counter.Counter(\"all_games\")\n    counter_country = counter.Counter(selected_country)\n    counter_match = counter.Counter(select_match)\n    for i in range(int(N)):\n        bracket_string = \"\"\n        print(\n            f\"P {index:02d}: Begin of simulation {i + 1}/{N}, {round((i+1)/N*100,3)}%\"",
+        "detail": "simulation",
+        "documentation": {}
+    },
+    {
+        "label": "Team",
+        "kind": 6,
+        "importPath": "team",
+        "description": "team",
+        "peekOfCode": "class Team:\n    def __init__(self, name: str, group_name: str):\n        self.name = name\n        self.points = 0\n        self.PG = 0\n        self.GS = 0\n        self.GA = 0\n        self.GD = 0\n        self.W = 0\n        self.rank = 0",
+        "detail": "team",
+        "documentation": {}
+    }
+]
