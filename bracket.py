@@ -169,7 +169,7 @@ def check_duplicate_values(bracketMap):
 
 def get(q_tag: str) -> dict:
     if q_tag == "":
-        return bracketMap_8
+        return bracketMap_16
     for key, bracket in bracketMap_24.items():
         for c in q_tag:
             if c not in key:
