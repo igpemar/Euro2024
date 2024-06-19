@@ -6,10 +6,10 @@ def initialize():
     groups = []
     groups.append(Group("A", calendars.calendarA))
     groups.append(Group("B", calendars.calendarB))
-    # groups.append(Group("C", calendars.calendarC))
-    # groups.append(Group("D", calendars.calendarD))
-    # groups.append(Group("E", calendars.calendarE))
-    # groups.append(Group("F", calendars.calendarF))
+    groups.append(Group("C", calendars.calendarC))
+    groups.append(Group("D", calendars.calendarD))
+    groups.append(Group("E", calendars.calendarE))
+    groups.append(Group("F", calendars.calendarF))
     return groups
 
 
@@ -19,7 +19,7 @@ class Group:
         self.teams = self.set_teams(calendar)
         self.calendar = self.set_calendar(calendar)
         self.results = self.get_results_from_played_matches(calendar)
-        self.standings = self.calculate_standings()
+        self.standings = pd.DataFrame()
 
     def set_calendar(self, calendar):
         return [[match[0], match[1]] for match in calendar]
@@ -38,7 +38,7 @@ class Group:
         return {
             self.match_tag(match[0], match[1]): result.Result(match)
             for match in calendar
-            if match[2] != -1
+            if (match[2] != -1 and match[4])
         }
 
     def simulate(self, fn):
@@ -68,9 +68,10 @@ class Group:
         data = {
             "Team.Name": [team.name for team in self.teams.values()],
             "Team.PG": [team.PG for team in self.teams.values()],
+            "Team.GD": [team.GD for team in self.teams.values()],
             "Team.GS": [team.GS for team in self.teams.values()],
             "Team.GA": [team.GA for team in self.teams.values()],
-            "Team.GD": [team.GD for team in self.teams.values()],
+            "Team.W": [team.W for team in self.teams.values()],
             "Team.Points": [team.points for team in self.teams.values()],
         }
         # Creating DataFrame

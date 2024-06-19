@@ -2,10 +2,11 @@ import multiprocessing
 import calendars, simulation
 import pickle
 import time
+import os
 
-N = 5000
-display_max = 24
-PROCESSES = 10
+N = 50000
+display_max = 10
+PROCESSES = 1
 
 if __name__ == "__main__":
     counters = {}
@@ -37,12 +38,18 @@ if __name__ == "__main__":
     # Load and combine results
     counter_all_lst, counter_country_lst, counter_matches_lst = [], [], []
     for i in range(PROCESSES):
-        with open(f"counter_{i}.pckl", "rb") as f:
+        file = f"temp/counter_{i}.pckl"
+        with open(file, "rb") as f:
             counter_all_lst.append(pickle.load(f))
-        with open(f"counter_country_{i}.pckl", "rb") as f:
+        os.remove(file)
+        file = f"temp/counter_country_{i}.pckl"
+        with open(file, "rb") as f:
             counter_country_lst.append(pickle.load(f))
-        with open(f"counter_match_{i}.pckl", "rb") as f:
+        os.remove(file)
+        file = f"temp/counter_match_{i}.pckl"
+        with open(file, "rb") as f:
             counter_matches_lst.append(pickle.load(f))
+        os.remove(file)
 
     counter_all = simulation.combine_results(*counter_all_lst)
     counter_country = simulation.combine_results(*counter_country_lst)

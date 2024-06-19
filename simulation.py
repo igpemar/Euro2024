@@ -29,15 +29,30 @@ fifa_ranking = {
     "Georgia": 24,
 }
 
-ALLOW_THIRDS = False
+ALLOW_THIRDS = True
 MAX_RANDOM = 4
-RANKING_BIASED_MAX_GAIN = 0
-selected_country = "Denmark"
+RANKING_BIASED_MAX_GAIN = 2
+selected_country = "Spain"
 select_match = "1B"
 
 
 def random_sim(match):
-    return (random.randint(0, MAX_RANDOM), random.randint(0, MAX_RANDOM))
+    if match[0] == "Albania":
+        return 5, 0
+    if match[1] == "Albania":
+        return 0, 5
+
+    draw = random.random()
+    if draw < 0.30:
+        goals = random.randint(0, MAX_RANDOM)
+        return goals, goals
+
+    goals_h = random.randint(0, MAX_RANDOM)
+    goals_a = random.randint(0, MAX_RANDOM)
+    while goals_h == goals_a:
+        goals_h = random.randint(0, MAX_RANDOM)
+        goals_a = random.randint(0, MAX_RANDOM)
+    return goals_h, goals_a
 
 
 def ranking_biased(match):
@@ -52,6 +67,9 @@ def ranking_biased(match):
     return math.floor(random.randint(0, MAX_RANDOM) - gain), math.floor(
         random.randint(0, MAX_RANDOM) + gain
     )
+
+
+simulation_function = simulation.random_sim
 
 
 def worker(N, index):
@@ -70,7 +88,7 @@ def worker(N, index):
         ## Simulate pending matches
         for g in groups:
             # g.simulate(simulation.random_result)
-            g.simulate(simulation.ranking_biased)
+            g.simulate(simulation_function)
 
         ## Update standings
         for g in groups:
@@ -93,6 +111,12 @@ def worker(N, index):
             for key in qualified_3rd_group.keys():
                 bracket_string += key[1]
 
+        if (
+            qualified_all["1B"].name
+            == "Albania"
+            # and qualified_all["3D"].name == "Austria"
+        ):
+            pass
         # Generate bracket
         selected_bracket = bracket.get(bracket_string)
         bracket_matches = bracket.get_matches(selected_bracket, qualified_all)
@@ -113,11 +137,11 @@ def worker(N, index):
         match = f"{match[0]}-{match[1]}"
         counter_match.add(match)
 
-    with open(f"counter_{index}.pckl", "wb") as f:
+    with open(f"temp/counter_{index}.pckl", "wb") as f:
         pickle.dump(counter_all, f)
-    with open(f"counter_country_{index}.pckl", "wb") as f:
+    with open(f"temp/counter_country_{index}.pckl", "wb") as f:
         pickle.dump(counter_country, f)
-    with open(f"counter_match_{index}.pckl", "wb") as f:
+    with open(f"temp/counter_match_{index}.pckl", "wb") as f:
         pickle.dump(counter_match, f)
     print("End of simulation")
 
