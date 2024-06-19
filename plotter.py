@@ -3,10 +3,11 @@ import pickle
 import simulation
 import numpy as np
 
-N = 10000
+N = 1000000
+MODE = "FR"
 
 for n in range(12, 13):
-    source_file = f"FR/counter_all_{N}_G{n}.pckl"
+    source_file = f"{MODE}/counter_all_{N}_G{n}.pckl"
 
     # List of country names
     with open(source_file, "rb") as f:
@@ -28,9 +29,9 @@ for n in range(12, 13):
     all_games = np.sum(data)
     print(all_games)
     for i in range(data.shape[0]):
-        row_sum = np.sum(data[i, :])  # Sum of the elements in the row
+        # row_sum = np.sum(data[i, :])  # Sum of the elements in the row
         data[i, :] = 100 * data[i, :] / (all_games / 16)
-        data[i, -1] = str(100 * row_sum / (all_games / 16))
+        # data[i, -1] = str(100 * row_sum / (all_games / 16))
 
     # Create the plot
     vmin = 0
@@ -45,6 +46,9 @@ for n in range(12, 13):
     cbar = fig.colorbar(cax)
     cbar.set_label("Probability (%)")
     # fig.colorbar(cax)
+    for i in range(data.shape[0]):
+        row_sum = np.sum(data[i, :])  # Sum of the elements in the row
+        data[i, -1] = row_sum
 
     # Loop over data dimensions and create text annotations.
     for i in range(len(data)):
@@ -60,9 +64,9 @@ for n in range(12, 13):
             )
 
     # Set axis labels with country names
-    ax.set_xticks(range(len(countries)))
+    ax.set_xticks(range(len(countries) + 1))
     ax.set_yticks(range(len(countries)))
-    ax.set_xticklabels(countries)
+    ax.set_xticklabels(countries + ["Total"])
     ax.set_yticklabels(countries)
 
     # Rotate the x-axis labels for better readability
@@ -70,12 +74,10 @@ for n in range(12, 13):
 
     # Set title
     plt.title(
-        [
-            source_file,
-            f"Round of 16 Match Probabilities after Game Day 1; N={N}",
-        ]
+        f"Round of 16 Match Probabilities; Game Day {n}; N={N:,}",
     )
 
     # Display the plot
-    plt.savefig(f"FR_N_{N}_G{n}.png", dpi=500)
-    # plt.show()
+    plt.savefig(f"plots/{MODE}_N_{N}_G{n}.png", dpi=500)
+
+    plt.show()

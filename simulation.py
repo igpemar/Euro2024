@@ -38,15 +38,16 @@ select_match = "1B"
 
 def random_sim(match):
     draw = random.random()
-    if draw < 0.30:
-        goals = random.randint(0, MAX_RANDOM)
-        return goals, goals
-
     goals_h = random.randint(0, MAX_RANDOM)
     goals_a = random.randint(0, MAX_RANDOM)
+
+    if draw < 0.30:
+        return goals_h, goals_h
+
     while goals_h == goals_a:
         goals_h = random.randint(0, MAX_RANDOM)
         goals_a = random.randint(0, MAX_RANDOM)
+
     return goals_h, goals_a
 
 
