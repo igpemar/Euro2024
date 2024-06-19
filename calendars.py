@@ -1,57 +1,50 @@
 calendarA = [
-    # ["Germany", "Scotland", 5, 1],
-    # ["Hungary", "Switzerland", 1, 3],
-    ["Germany", "Scotland", -1, -1],
-    ["Hungary", "Switzerland", -1, -1],
-    ["Germany", "Hungary", -1, -1],
-    ["Scotland", "Switzerland", -1, -1],
-    ["Switzerland", "Germany", -1, -1],
-    ["Scotland", "Hungary", -1, -1],
+    ["Germany", "Scotland", 5, 1, True],
+    ["Hungary", "Switzerland", 1, 3, True],
+    ["Germany", "Hungary", -1, -1, True],
+    ["Scotland", "Switzerland", -1, -1, True],
+    ["Switzerland", "Germany", -1, -1, True],
+    ["Scotland", "Hungary", -1, -1, True],
 ]
 calendarB = [
-    # ["Spain", "Croatia", 3, 0],
-    # ["Italy", "Albania", 2, 1],
-    ["Spain", "Croatia", -1, -1],
-    ["Italy", "Albania", -1, -1],
-    ["Croatia", "Albania", -1, -1],
-    ["Spain", "Italy", -1, -1],
-    ["Albania", "Spain", -1, -1],
-    ["Croatia", "Italy", -1, -1],
+    ["Spain", "Croatia", 3, 0, True],
+    ["Italy", "Albania", 2, 1, True],
+    ["Croatia", "Albania", -1, -1, True],
+    ["Spain", "Italy", -1, -1, True],
+    ["Albania", "Spain", -1, -1, True],
+    ["Croatia", "Italy", -1, -1, True],
 ]
 calendarC = [
-    # ["Slovenia", "Denmark", 1, 1],
-    ["Slovenia", "Denmark", -1, -1],
-    # ["Serbia", "England", 0, 1],
-    ["Serbia", "England", -1, -1],
-    ["Slovenia", "Serbia", -1, -1],
-    ["Denmark", "England", -1, -1],
-    ["Denmark", "Serbia", -1, -1],
-    ["England", "Slovenia", -1, -1],
+    ["Slovenia", "Denmark", 1, 1, True],
+    ["Serbia", "England", 0, 1, True],
+    ["Slovenia", "Serbia", -1, -1, True],
+    ["Denmark", "England", -1, -1, True],
+    ["Denmark", "Serbia", -1, -1, True],
+    ["England", "Slovenia", -1, -1, True],
 ]
 calendarD = [
-    # ["Poland", "Netherlands", 1, 2],
-    ["Poland", "Netherlands", -1, -1],
-    ["Austria", "France", -1, -1],
-    ["Poland", "Austria", -1, -1],
-    ["Netherlands", "France", -1, -1],
-    ["Netherlands", "Austria", -1, -1],
-    ["France", "Poland", -1, -1],
+    ["Poland", "Netherlands", 1, 2, True],
+    ["Austria", "France", 0, 1, True],
+    ["Poland", "Austria", -1, -1, True],
+    ["Netherlands", "France", -1, -1, True],
+    ["Netherlands", "Austria", -1, -1, True],
+    ["France", "Poland", -1, -1, True],
 ]
 calendarE = [
-    ["Romania", "Ukraine", -1, -1],
-    ["Belgium", "Slovakia", -1, -1],
-    ["Slovakia", "Ukraine", -1, -1],
-    ["Belgium", "Romania", -1, -1],
-    ["Ukraine", "Belgium", -1, -1],
-    ["Slovakia", "Romania", -1, -1],
+    ["Romania", "Ukraine", 3, 0, True],
+    ["Belgium", "Slovakia", 0, 1, True],
+    ["Slovakia", "Ukraine", -1, -1, True],
+    ["Belgium", "Romania", -1, -1, True],
+    ["Ukraine", "Belgium", -1, -1, True],
+    ["Slovakia", "Romania", -1, -1, True],
 ]
 calendarF = [
-    ["Turkey", "Georgia", -1, -1],
-    ["Portugal", "Czechia", -1, -1],
-    ["Georgia", "Czechia", -1, -1],
-    ["Turkey", "Portugal", -1, -1],
-    ["Czechia", "Turkey", -1, -1],
-    ["Georgia", "Portugal", -1, -1],
+    ["Turkey", "Georgia", 3, 1, True],
+    ["Portugal", "Czechia", 2, 1, True],
+    ["Georgia", "Czechia", -1, -1, True],
+    ["Turkey", "Portugal", -1, -1, True],
+    ["Czechia", "Turkey", -1, -1, True],
+    ["Georgia", "Portugal", -1, -1, True],
 ]
 
 
@@ -109,20 +102,20 @@ print("All teams within each calendars play exactly 3 matches")
 
 G = 0
 for match in calendarA:
-    if match[2] != -1:
+    if match[2] != -1 and match[4]:
         G += 1
 for match in calendarB:
-    if match[2] != -1:
+    if match[2] != -1 and match[4]:
         G += 1
 for match in calendarC:
-    if match[2] != -1:
+    if match[2] != -1 and match[4]:
         G += 1
 for match in calendarD:
-    if match[2] != -1:
+    if match[2] != -1 and match[4]:
         G += 1
 for match in calendarE:
-    if match[2] != -1:
+    if match[2] != -1 and match[4]:
         G += 1
 for match in calendarF:
-    if match[2] != -1:
+    if match[2] != -1 and match[4]:
         G += 1
