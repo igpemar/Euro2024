@@ -1,5 +1,5 @@
 import pandas as pd
-import calendars, team, result
+import calendars, team, result, simulation
 
 
 def initialize():
@@ -73,50 +73,36 @@ class Group:
             "Team.GA": [team.GA for team in self.teams.values()],
             "Team.W": [team.W for team in self.teams.values()],
             "Team.Points": [team.points for team in self.teams.values()],
+            "Team.FR": [team.fifa_ranking for team in self.teams.values()],
+            "Team.HHR": [0 for team in self.teams.values()],
         }
         # Creating DataFrame
         df = pd.DataFrame(data)
         # Sorting DataFrame by points
         df = df.sort_values(by=["Team.Points"], ascending=False, ignore_index=True)
-        if self.is_quadruple_tie(df):
-            df = df.sort_values(
-                by=["Team.GD", "Team.GS"], ascending=False, ignore_index=True
-            )
-            df["Rank"] = df.index + 1
-            return df
-        # Check for ties in points and apply tie breaking criteria in case of equal number of points
-        for i, team_name in enumerate(df["Team.Name"][:-1]):
-            if df.iloc[i]["Team.Points"] == df.iloc[i + 1]["Team.Points"]:
-                team_lag = team_name
-                team_lead = df.iloc[i + 1]["Team.Name"]
-                # First Tie break
-                ## Lag team won in head to head match
-                if self.first_tie_break(team_lag, team_lead) == "W":
-                    continue
-                ## Lag team lost in head to head match
-                if self.first_tie_break(team_lag, team_lead) == "L":
-                    df.iloc[[i, i + 1]] = df.iloc[[i + 1, i]].values
-                    continue
-                ## Head to head match was a draw
+        # if self.is_quadruple_tie(df):
+        #     df = df.sort_values(
+        #         by=["Team.GD", "Team.GS", "Team.FR"],
+        #         ascending=[False, False, True],
+        #         ignore_index=True,
+        #     )
+        #     df["Rank"] = df.index + 1
+        #     return df
+        # Split the DataFrame based on unique values in the 'Teams.Point' column
+        dfs_by_points = {
+            points: group.reset_index(drop=True)
+            for points, group in df.groupby("Team.Points")
+        }
 
-                # Second Tie break
-                ## Lag team has a greater goal difference
-                if self.second_tie_break(df, i, i + 1) == 1:
-                    continue
-                ## Lag team has a lower goal difference
-                if self.second_tie_break(df, i, i + 1) == -1:
-                    df.iloc[[i, i + 1]] = df.iloc[[i + 1, i]].values
-                    continue
-                ## Lag team and lead team have the same goal difference
-
-                # Third tie break
-                ## Lag team has scored more overall goals
-                if self.third_tie_break(df, i, i + 1) == 1:
-                    continue
-                ## Lag team has scored less overall goals
-                if self.third_tie_break(df, i, i + 1) == -1:
-                    df.iloc[[i, i + 1]] = df.iloc[[i + 1, i]].values
-                    continue
+        df = pd.DataFrame()
+        keys = list(dfs_by_points.keys())
+        keys.sort(reverse=True)
+        for k in keys:
+            group_df = dfs_by_points[k]
+            untied_df = group_df
+            if len(group_df) > 1:
+                untied_df = self.untie(group_df)
+            df = pd.concat([df, untied_df], ignore_index=True)
 
         df["Rank"] = df.index + 1
         return df
@@ -140,6 +126,8 @@ class Group:
             "Team.GA": [team.GA for team in self.teams.values()],
             "Team.W": [team.W for team in self.teams.values()],
             "Team.PG": [team.PG for team in self.teams.values()],
+            "Team.FR": [team.fifa_ranking for team in self.teams.values()],
+            "Team.HHR": [0 for team in self.teams.values()],
         }
         # Creating DataFrame
         df = pd.DataFrame(data)
@@ -151,6 +139,29 @@ class Group:
         )
         df["Rank"] = df.index + 1
         return df
+
+    def untie(self, df):
+        print(df)
+        for i_lag in range(len(df)):
+            for i_lead in range(len(df)):
+                if i_lag == i_lead:
+                    continue
+                team_lag = df.iloc[i_lag]["Team.Name"]
+                team_lead = df.iloc[i_lead]["Team.Name"]
+                # First Tie break
+                ## Lag team won in head to head match
+                if self.first_tie_break(team_lag, team_lead) == "W":
+                    df.loc[i_lag, "Team.HHR"] += 1
+                ## Apply rest of absolute tie breaks
+            print(df)
+        return self.absolute_tie_breaks(df)
+
+    def absolute_tie_breaks(self, df):
+        return df.sort_values(
+            by=["Team.HHR", "Team.GD", "Team.GS", "Team.FR"],
+            ascending=[False, False, False, True],
+            ignore_index=True,
+        )
 
     def first_tie_break(self, team_lag, team_lead):
         return self.teams[team_lag].head_to_head.get(team_lead, 0)
