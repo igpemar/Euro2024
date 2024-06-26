@@ -78,6 +78,12 @@ class Group:
         df = pd.DataFrame(data)
         # Sorting DataFrame by points
         df = df.sort_values(by=["Team.Points"], ascending=False, ignore_index=True)
+        if self.is_quadruple_tie(df):
+            df = df.sort_values(
+                by=["Team.GD", "Team.GS"], ascending=False, ignore_index=True
+            )
+            df["Rank"] = df.index + 1
+            return df
         # Check for ties in points and apply tie breaking criteria in case of equal number of points
         for i, team_name in enumerate(df["Team.Name"][:-1]):
             if df.iloc[i]["Team.Points"] == df.iloc[i + 1]["Team.Points"]:
@@ -169,8 +175,8 @@ class Group:
     def update_standings_3rd_group(self):
         self.standings = self.calculate_standings_3rd_group()
 
-    def update_standings_3rd_group(self):
-        self.standings = self.calculate_standings_3rd_group()
+    def is_quadruple_tie(self, df):
+        return df["Team.Points"].unique().size == 1 and df["Team.Points"].unique() == 4
 
     def match_tag(self, team_home, team_away):
         return f"{team_home}-{team_away}"
