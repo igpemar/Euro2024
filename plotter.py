@@ -39,7 +39,6 @@ def plot(G: int, N: int) -> None:
         vmax = np.max(
             data[:, :-1]
         )  # You can set this to the maximum value you want for the colormap
-        print(vmax)
         fig, ax = plt.subplots(figsize=(16, 10))
         cax = ax.matshow(data, cmap="coolwarm", vmin=vmin, vmax=vmax / 2)
 

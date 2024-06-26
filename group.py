@@ -141,7 +141,6 @@ class Group:
         return df
 
     def untie(self, df):
-        print(df)
         for i_lag in range(len(df)):
             for i_lead in range(len(df)):
                 if i_lag == i_lead:
@@ -152,8 +151,6 @@ class Group:
                 ## Lag team won in head to head match
                 if self.first_tie_break(team_lag, team_lead) == "W":
                     df.loc[i_lag, "Team.HHR"] += 1
-                ## Apply rest of absolute tie breaks
-            print(df)
         return self.absolute_tie_breaks(df)
 
     def absolute_tie_breaks(self, df):
