@@ -73,7 +73,7 @@ class Group:
             "Team.GA": [team.GA for team in self.teams.values()],
             "Team.W": [team.W for team in self.teams.values()],
             "Team.Points": [team.points for team in self.teams.values()],
-            "Team.FR": [team.fifa_ranking for team in self.teams.values()],
+            "Team.EQR": [team.euro_qualifier_ranking for team in self.teams.values()],
             "Team.HHR": [0 for team in self.teams.values()],
         }
         # Creating DataFrame
@@ -126,7 +126,7 @@ class Group:
             "Team.GA": [team.GA for team in self.teams.values()],
             "Team.W": [team.W for team in self.teams.values()],
             "Team.PG": [team.PG for team in self.teams.values()],
-            "Team.FR": [team.fifa_ranking for team in self.teams.values()],
+            "Team.EQR": [team.euro_qualifier_ranking for team in self.teams.values()],
             "Team.HHR": [0 for team in self.teams.values()],
         }
         # Creating DataFrame
@@ -158,7 +158,7 @@ class Group:
 
     def absolute_tie_breaks(self, df):
         return df.sort_values(
-            by=["Team.HHR", "Team.GD", "Team.GS", "Team.FR"],
+            by=["Team.HHR", "Team.GD", "Team.GS", "Team.EQR"],
             ascending=[False, False, False, True],
             ignore_index=True,
         )

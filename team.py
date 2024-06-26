@@ -1,3 +1,31 @@
+euro_qualifier_ranking = {
+    "Belgium": 1,
+    "Italy": 2,
+    "England": 3,
+    "Germany": 4,
+    "Spain": 5,
+    "Ukraine": 6,
+    "France": 7,
+    "Poland": 8,
+    "Switzerland": 9,
+    "Croatia": 10,
+    "Netherlands": 11,
+    "Portugal": 12,
+    "Turkey": 13,
+    "Denmark": 14,
+    "Austria": 15,
+    "Hungary": 16,
+    "Czechia": 17,
+    "Serbia": 18,
+    "Slovakia": 19,
+    "Scotland": 20,
+    "Slovenia": 21,
+    "Romania": 22,
+    "Georgia": 23,
+    "Albania": 24,
+}
+
+
 class Team:
     def __init__(self, name: str, group_name: str):
         self.name = name
@@ -10,6 +38,7 @@ class Team:
         self.rank = 0
         self.group = group_name
         self.head_to_head = {}
+        self.euro_qualifier_ranking = euro_qualifier_ranking[name]
 
     def update_stats_home(self, result):
         self.PG += 1

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import pickle
-import simulation
+import team
 import numpy as np
 
 MODE = "FR"
@@ -15,7 +15,7 @@ def plot(G: int, N: int) -> None:
             counter_all = pickle.load(f)
         countries = set()
 
-        countries = sorted(list(simulation.fifa_ranking.keys()))
+        countries = sorted(list(team.euro_qualifier_ranking.keys()))
         country_indices = {}
         for i, country in enumerate(countries):
             country_indices[country] = i
