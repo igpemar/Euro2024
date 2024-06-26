@@ -1,48 +1,48 @@
 calendarA = [
     ["Germany", "Scotland", 5, 1, True],
     ["Hungary", "Switzerland", 1, 3, True],
-    ["Germany", "Hungary", -1, -1, True],
-    ["Scotland", "Switzerland", -1, -1, True],
-    ["Switzerland", "Germany", -1, -1, True],
-    ["Scotland", "Hungary", -1, -1, True],
+    ["Germany", "Hungary", 2, 0, True],
+    ["Scotland", "Switzerland", 1, 1, True],
+    ["Switzerland", "Germany", 1, 1, True],
+    ["Scotland", "Hungary", 0, 1, True],
 ]
 calendarB = [
     ["Spain", "Croatia", 3, 0, True],
     ["Italy", "Albania", 2, 1, True],
-    ["Croatia", "Albania", -1, -1, True],
-    ["Spain", "Italy", -1, -1, True],
-    ["Albania", "Spain", -1, -1, True],
-    ["Croatia", "Italy", -1, -1, True],
+    ["Croatia", "Albania", 2, 2, True],
+    ["Spain", "Italy", 1, 0, True],
+    ["Albania", "Spain", 0, 1, True],
+    ["Croatia", "Italy", 1, 1, True],
 ]
 calendarC = [
     ["Slovenia", "Denmark", 1, 1, True],
     ["Serbia", "England", 0, 1, True],
-    ["Slovenia", "Serbia", -1, -1, True],
-    ["Denmark", "England", -1, -1, True],
-    ["Denmark", "Serbia", -1, -1, True],
-    ["England", "Slovenia", -1, -1, True],
+    ["Slovenia", "Serbia", 1, 1, True],
+    ["Denmark", "England", 2, 2, True],
+    ["Denmark", "Serbia", 0, 0, True],
+    ["England", "Slovenia", 0, 0, True],
 ]
 calendarD = [
     ["Poland", "Netherlands", 1, 2, True],
     ["Austria", "France", 0, 1, True],
-    ["Poland", "Austria", -1, -1, True],
-    ["Netherlands", "France", -1, -1, True],
-    ["Netherlands", "Austria", -1, -1, True],
-    ["France", "Poland", -1, -1, True],
+    ["Poland", "Austria", 1, 3, True],
+    ["Netherlands", "France", 0, 0, True],
+    ["Netherlands", "Austria", 2, 3, True],
+    ["France", "Poland", 1, 1, True],
 ]
 calendarE = [
     ["Romania", "Ukraine", 3, 0, True],
     ["Belgium", "Slovakia", 0, 1, True],
-    ["Slovakia", "Ukraine", -1, -1, True],
-    ["Belgium", "Romania", -1, -1, True],
+    ["Slovakia", "Ukraine", 1, 2, True],
+    ["Belgium", "Romania", 2, 0, True],
     ["Ukraine", "Belgium", -1, -1, True],
     ["Slovakia", "Romania", -1, -1, True],
 ]
 calendarF = [
     ["Turkey", "Georgia", 3, 1, True],
     ["Portugal", "Czechia", 2, 1, True],
-    ["Georgia", "Czechia", -1, -1, True],
-    ["Turkey", "Portugal", -1, -1, True],
+    ["Georgia", "Czechia", 1, 1, True],
+    ["Turkey", "Portugal", 0, 3, True],
     ["Czechia", "Turkey", -1, -1, True],
     ["Georgia", "Portugal", -1, -1, True],
 ]
