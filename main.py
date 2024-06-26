@@ -3,10 +3,11 @@ import calendars, simulation
 import pickle
 import time
 import os
+import plotter
 
-N = 1000000
+N = 100
 display_max = 10
-PROCESSES = 20
+PROCESSES = 1
 
 if __name__ == "__main__":
     counters = {}
@@ -55,7 +56,7 @@ if __name__ == "__main__":
     counter_country = simulation.combine_results(*counter_country_lst)
     counter_match = simulation.combine_results(*counter_matches_lst)
     t_end = time.time()
-    with open(f"counter_all_{N}_G{calendars.G}.pckl", "wb") as f:
+    with open(f"FR/counter_all_{N}_G{calendars.G}.pckl", "wb") as f:
         pickle.dump(counter_all, f)
     # Printing results
     print("==================================")
@@ -106,3 +107,4 @@ if __name__ == "__main__":
 
     elapsed = t_end - t_start
     print(f"Elapsed time: {round(elapsed,2)} seconds")
+    plotter.plot(calendars.G, N)
