@@ -5,7 +5,7 @@ import time
 import os
 import plotter
 
-N = 100
+N = 100000
 display_max = 10
 PROCESSES = 1
 
