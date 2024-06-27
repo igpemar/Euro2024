@@ -4,12 +4,12 @@ import calendars, team, result, simulation
 
 def initialize():
     groups = []
-    groups.append(Group("A", calendars.calendarA))
-    groups.append(Group("B", calendars.calendarB))
-    groups.append(Group("C", calendars.calendarC))
-    groups.append(Group("D", calendars.calendarD))
-    groups.append(Group("E", calendars.calendarE))
-    groups.append(Group("F", calendars.calendarF))
+    groups.append(Group("A", calendars.calendar_A))
+    groups.append(Group("B", calendars.calendar_B))
+    groups.append(Group("C", calendars.calendar_C))
+    groups.append(Group("D", calendars.calendar_D))
+    groups.append(Group("E", calendars.calendar_E))
+    groups.append(Group("F", calendars.calendar_F))
     return groups
 
 
@@ -38,7 +38,7 @@ class Group:
         return {
             self.match_tag(match[0], match[1]): result.Result(match)
             for match in calendar
-            if (match[2] != -1 and match[4])
+            if (match[2] != -1)
         }
 
     def simulate(self, fn):
@@ -150,6 +150,8 @@ class Group:
                 # First Tie break
                 ## Lag team won in head to head match
                 if self.first_tie_break(team_lag, team_lead) == "W":
+                    df.loc[i_lag, "Team.HHR"] += 3
+                if self.first_tie_break(team_lag, team_lead) == "D":
                     df.loc[i_lag, "Team.HHR"] += 1
         return self.absolute_tie_breaks(df)
 
