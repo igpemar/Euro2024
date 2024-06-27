@@ -63,6 +63,21 @@ def sample_group_6_6_6_0():
     )
 
 
+@pytest.fixture
+def sample_group_9_3_3_3():
+    return Group(
+        "A",
+        [
+            ["Denmark", "Belgium", 1, 0, True],
+            ["England", "Spain", 0, 1, True],
+            ["Denmark", "England", 0, 1, True],
+            ["Belgium", "Spain", 0, 1, True],
+            ["Denmark", "Spain", 0, 1, True],
+            ["Belgium", "England", 1, 0, True],
+        ],
+    )
+
+
 def test_calculate_standings_D_5_5_3_2(sample_group_D_5_5_3_2):
     # Expected standings based on the sample group
     expected_standings = [
@@ -298,6 +313,66 @@ def test_calculate_standings_6_6_6_0(sample_group_6_6_6_0):
 
     # Calculate standings
     standings = sample_group_6_6_6_0.calculate_standings()
+
+    # Assert that the calculated standings match the expected standings
+    assert standings.to_dict(orient="records") == expected_standings
+
+
+def test_calculate_standings_9_3_3_3(sample_group_9_3_3_3):
+    # Expected standings based on the sample group
+    expected_standings = [
+        {
+            "Team.Name": "Spain",
+            "Team.PG": 3,
+            "Team.GD": 3,
+            "Team.GS": 3,
+            "Team.GA": 0,
+            "Team.W": 3,
+            "Team.Points": 9,
+            "Team.EQR": team.euro_qualifier_ranking["Spain"],
+            "Team.HHR": 0,
+            "Rank": 1,
+        },
+        {
+            "Team.Name": "Belgium",
+            "Team.PG": 3,
+            "Team.GD": -1,
+            "Team.GS": 1,
+            "Team.GA": 2,
+            "Team.W": 1,
+            "Team.Points": 3,
+            "Team.EQR": team.euro_qualifier_ranking["Belgium"],
+            "Team.HHR": 1,
+            "Rank": 2,
+        },
+        {
+            "Team.Name": "England",
+            "Team.PG": 3,
+            "Team.GD": -1,
+            "Team.GS": 1,
+            "Team.GA": 2,
+            "Team.W": 1,
+            "Team.Points": 3,
+            "Team.EQR": team.euro_qualifier_ranking["England"],
+            "Team.HHR": 1,
+            "Rank": 3,
+        },
+        {
+            "Team.Name": "Denmark",
+            "Team.PG": 3,
+            "Team.GD": -1,
+            "Team.GS": 1,
+            "Team.GA": 2,
+            "Team.W": 1,
+            "Team.Points": 3,
+            "Team.EQR": team.euro_qualifier_ranking["Denmark"],
+            "Team.HHR": 1,
+            "Rank": 4,
+        },
+    ]
+
+    # Calculate standings
+    standings = sample_group_9_3_3_3.calculate_standings()
 
     # Assert that the calculated standings match the expected standings
     assert standings.to_dict(orient="records") == expected_standings
