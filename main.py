@@ -6,8 +6,9 @@ import os
 import plotter
 
 N = 100000
-display_max = 10
-PROCESSES = 1
+list_max = 10
+PROCESSES = 10
+PLOT = False
 
 if __name__ == "__main__":
     counters = {}
@@ -66,7 +67,7 @@ if __name__ == "__main__":
     for match, count in counter_all.count.items():
         print(f"{match}: {round(100*count/counter_all.total,2)}%")
         display += 1
-        if display >= display_max:
+        if display >= list_max:
             break
 
     print("==================================")
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     for match, count in counter_country.count.items():
         print(f"{match}: {round(100*count/counter_country.total,2)}%")
         display += 1
-        if display >= display_max:
+        if display >= list_max:
             break
 
     print("==================================")
@@ -86,7 +87,7 @@ if __name__ == "__main__":
     for match, count in counter_match.count.items():
         print(f"{match}: {round(100*count/counter_match.total,2)}%")
         display += 1
-        if display >= display_max:
+        if display >= list_max:
             break
 
     print("==================================")
@@ -107,4 +108,5 @@ if __name__ == "__main__":
 
     elapsed = t_end - t_start
     print(f"Elapsed time: {round(elapsed,2)} seconds")
-    plotter.plot(calendars.G, N)
+    if PLOT:
+        plotter.plot(calendars.G, N)
